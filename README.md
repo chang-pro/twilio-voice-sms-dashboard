@@ -5,38 +5,50 @@
 ![Twilio](https://img.shields.io/badge/Twilio-Voice_&_SMS-F22F46?style=flat-square&logo=twilio&logoColor=white)
 ![WebRTC](https://img.shields.io/badge/WebRTC-Softphone-333333?style=flat-square)
 ![Supabase](https://img.shields.io/badge/Supabase-Postgres-3FCF8E?style=flat-square&logo=supabase&logoColor=white)
+![Live](https://img.shields.io/badge/Powers-TechHelpFL.com-brightgreen?style=flat-square)
 ![Repo](https://img.shields.io/badge/Source-Private-orange?style=flat-square)
 
-**A production-ready communication platform with an in-browser softphone, power dialer, mass SMS, and email — built on Twilio and Supabase.**
+**I built a full communication platform — softphone, power dialer, mass SMS, and email — all running in the browser.** This is the system behind [TechHelpFL.com](https://techhelpfl.com), handling real client calls and outreach.
 
 ---
 
-## Features
+## Why This Is Hard
+
+Twilio gives you APIs. It doesn't give you a product. I had to build:
+- **A real softphone in the browser** — WebRTC audio, call state management, oall transfer, voicemail drop. This isn't a "click to call" button — it's a full phone replacement.
+- **A power dialer that doesn't get you sued** — every call has to pass DNC checks and consent verification before it dials. Miss one and you're looking at TCPA fines.
+- **Mass SMS that actually delivers** — rate limiting, delivery tracking, error handling, deduplication. Blasting 10,000 messages through Twilio is easy. Making sure they arrive is the hard part.
+
+## What I Built
 
 ### Softphone 2.0
-- In-browser calling with Twilio Voice SDK (WebRTC)
-- Mute, consult transfer, and manual voicemail drop
-- Real-time call status tracking and duration display
+- Full in-browser calling via **Twilio Voice SDK (WebRTC)** — no phone hardware needed
+- **Mute, consult transfer, and manual voicemail drop** during live calls
+- Real-time call status display (Connecting → Ringing → In Call → Ended)
+- Call duration tracking and automatic logging to the CRM
+- Works across Chrome, Firefox, and Edge
 
 ### Power Dialer
-- Sequential dialing from CSV uploads or CRM queue
-- Compliance gates (DNC, consent) before every call
-- Attempt logging, dispositions, and agent notes
-- Voicemail drop via pre-recorded messages
+- Feeds from CSV uploads or CRM queue
+- **Compliance gates before every call** — DNC list check, consent verification, suppression list
+- Automatic attempt logging with dispositions (answered, voicemail, no answer, bad number)
+- Agent notes per call, callback scheduling
+- Voicemail drop via pre-recorded messages — agents don't wait for the beep
 
-### Mass SMS
-- Bulk messaging from CSV uploads with progress tracking
-- Real-time delivery status updates
+### Mass SMS Engine
+- Bulk messaging from CSV uploads with real-time progress tracking
+- Delivery status updates per message (queued → sent → delivered → failed)
 - Contact deduplication and error handling
+- Character count enforcement (160 char limit for single-segment SMS)
 
 ### Email System
-- Transactional emails powered by Resend SMTP
+- Transactional emails via **Resend SMTP**
 - Template management and delivery tracking
 
 ### CRM & Analytics
-- Automatic call logging with notes and activity tracking
-- Unified analytics combining call logs and dialer attempts
-- Agent performance dashboards
+- Automatic call logging with notes, recordings, and activity tracking
+- Unified analytics combining `call_log` + `dialer_attempts` for agent performance
+- Dashboard with call volume, connect rates, and average call duration per agent
 
 ## Architecture
 
@@ -63,22 +75,8 @@
 
 ## Tech Stack
 
-- **Framework:** Next.js 15, React, TypeScript
-- **Voice:** Twilio Programmable Voice + Voice SDK (WebRTC)
-- **SMS:** Twilio Programmable Messaging
-- **Email:** Resend SMTP
-- **Database:** Supabase (PostgreSQL)
-- **Deployment:** Vercel
-
-## Skills Demonstrated
-
-- WebRTC integration for browser-based telephony
-- Twilio Voice SDK implementation (client + server)
-- Webhook-driven event processing
-- Real-time UI with streaming status updates
-- Compliance engineering (DNC, consent enforcement)
-- Full-stack application with multiple communication channels
+`Next.js 15` · `TypeScript` · `Twilio Voice SDK` · `Twilio Programmable SMS` · `WebRTC` · `Supabase` · `Resend SMTP` · `Vercel`
 
 ---
 
-> *This is a showcase page for a private repository. Source code available upon request for verified opportunities.*
+> *Closed source — powers [TechHelpFL.com](https://techhelpfl.com). Source code available for serious inquiries.*
